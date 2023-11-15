@@ -312,7 +312,7 @@ def generate_chart():
         con = MongoClient("localhost", 27017)
         db = con["33oct"]
         col = db["employe"]
-        top_employees = list(col.find().sort('salary', 1).limit(5))
+        top_employees = list(col.find().sort('salary', -1).limit(5))
         employee_names = [employee["name"] for employee in top_employees]
         employee_salaries = [int(employee["salary"]) for employee in top_employees]
 
