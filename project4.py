@@ -324,7 +324,7 @@ def generate_chart():
         plt.tight_layout()
         plt.show()
     except Exception as e:
-        print("Error:", e)
+        showerror("Error:", e)
     finally:
         if con is not None:
             con.close()
