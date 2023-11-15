@@ -21,10 +21,10 @@ def temperauture5():
        
 def loc():
     try:
-        url = "https://ipinfo.io"
+        url = "https://api.openweathermap.org/data/2.5/weather?q=kalyan&appid=b64af53b051f87a4e6457582c489b950"
         res = get(url)
         data = res.json()
-        city_name = data["city"]
+        city_name = data["name"]
         location_info = f"{city_name}"
         location1.configure(text=location_info)
 
@@ -138,7 +138,7 @@ def f3():
 
 def f4():
     root.withdraw()
-    delete.deiconify()
+    delete12.deiconify()
 
 def f6():
     add.withdraw()
@@ -153,7 +153,7 @@ def f8():
     root.deiconify()
 
 def f9():
-    delete.withdraw()
+    delete12.withdraw()
     root.deiconify()
 
 def f10():
@@ -292,19 +292,19 @@ update1.pack()
 backc.pack(pady=5)
 update.withdraw()
 
-delete = Tk()
-delete.title("Delete Employee")
-delete.geometry("600x300+50+50")
+delete12 = Tk()
+delete12.title("Delete Employee")
+delete12.geometry("600x300+50+50")
 
-emp_id_label = Label(delete, text="Enter the employee id", font=f)
-emp_id_btn123 = Entry(delete, font=f)
-emp_delete = Button(delete, text="Delete", font=f, command=delete_1)
-backd = Button(delete, text="Back", font=f, command=f9)
+emp_id_label = Label(delete12, text="Enter the employee id", font=f)
+emp_id_btn123 = Entry(delete12, font=f)
+emp_delete = Button(delete12, text="Delete", font=f, command=delete_1)
+backd = Button(delete12, text="Back", font=f, command=f9)
 emp_id_label.pack(pady=5)
 emp_id_btn123.pack(pady=5)
 emp_delete.pack(pady=5)
 backd.pack(pady=5)
-delete.withdraw()
+delete12.withdraw()
 
 def generate_chart():
     con = None
@@ -312,7 +312,7 @@ def generate_chart():
         con = MongoClient("localhost", 27017)
         db = con["33oct"]
         col = db["employe"]
-        top_employees = list(col.find().sort('salary', -1).limit(5))
+        top_employees = list(col.find().sort('salary', 1).limit(5))
         employee_names = [employee["name"] for employee in top_employees]
         employee_salaries = [int(employee["salary"]) for employee in top_employees]
 
@@ -348,14 +348,14 @@ def close():
         root.destroy()
         add.destroy()
         view.destroy()
-        delete.destroy()
+        delete12.destroy()
         update.destroy()
         chart.destroy()
 
 root.protocol("WM_DELETE_WINDOW", close)
 add.protocol("WM_DELETE_WINDOW", close)
 view.protocol("WM_DELETE_WINDOW", close)
-delete.protocol("WM_DELETE_WINDOW", close)
+delete12.protocol("WM_DELETE_WINDOW", close)
 update.protocol("WM_DELETE_WINDOW", close)
 chart.protocol("WM_DELETE_WINDOW", close)
 
